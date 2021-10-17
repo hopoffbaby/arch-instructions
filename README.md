@@ -87,3 +87,31 @@ grub-mkconfig -o /boot/grub/grub.cfg
 remove ISO from drive
 
 `reboot`
+
+=================================
+
+post install 
+
+Setup network
+
+`pacman -S dhclient`
+
+base network manager is systemd-networkd (`networkctl`)
+
+```
+systemctl enable systemd-networkd.service --now
+systemctl enable systemd-resolved --now
+```
+
+create /etc/systemd/network/20-wired.network:
+
+```
+[Match]
+Name=enp0s3
+
+[Network]
+DHCP=yes
+```
+
+`systemctl restart systemd-networkd.service`
+
