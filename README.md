@@ -74,7 +74,7 @@ grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-* something here needs setting to show boot messages at startup. Otherwise you dont see much. I think its the `quite` option
+* something here needs setting to show boot messages at startup. Otherwise you dont see much. I think its the `quite` option. In the grub prompt, select e, then delete the quiet parameter, then f10 to continue boot.
 
 set up CPU microcode updates:
 ```
@@ -116,4 +116,40 @@ DHCP=yes
 ```
 
 `systemctl restart systemd-networkd.service`
+
+=====DESKTOP=============
+
+install the xrog group package
+`pacman -S xorg`
+
+Check GPU:
+$ lspci -v | grep -A1 -e VGA -e 3D
+
+install the driver. correct driver from https://archlinux.org/groups/x86_64/xorg-drivers/. or search :
+
+`pacman -Ss xf86-video`
+
+In my case vmware:
+
+`pacman -S xf86-video-vmware`
+
+Install a desktop environment, in my case KDE Plasma
+
+pacman -S plasma
+
+install a display manager. Im my case LightDM:
+
+pacman -S lightdm
+
+configure the greeter:
+
+pacman -S xorg-server lightdm-gtk-greeter
+
+systemctl enable lightdm
+
+to test install `xorg-server-xephyr` then run `lightdm --test-mode --debug`
+
+reboot
+
+There is a KDE bug that will not let virtualbox resolution go higher than 800x600. Change the virtual box display adapter to VBoxSVGA instead of VMSVGA
 
