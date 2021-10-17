@@ -57,24 +57,29 @@ create /etc/locale.conf:
 `echo "arch-host" > /etc/hostname`
 
 add the following to /etc/hosts
-```127.0.0.1	localhost
+```
+127.0.0.1	localhost
 ::1		localhost
-127.0.1.1	arch-host```
+127.0.1.1	arch-host
+```
 
 set the root passwd:
 
 `passwd`
 
 install and configure a bootloader:
-```pacman -S grub
+```
+pacman -S grub
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 set up CPU microcode updates:
-```pacman -S intel-ucode
+```
+pacman -S intel-ucode
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
 `ctrl+d`
 
 `umount -R /mnt`
