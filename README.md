@@ -135,7 +135,11 @@ In my case vmware:
 
 Install a desktop environment, in my case KDE Plasma
 
-pacman -S plasma
+pacman -S plasma 
+
+to have a better time in kde install this stuff. kde-applications adds some bloat, but something in there is needed for plasma discover package manager to work properly (potentially `appstream` and `appstream-qt`):
+
+`pacman -S konsole packagekit packagekit-qt5 kde-applications`
 
 install a display manager. Im my case LightDM:
 
