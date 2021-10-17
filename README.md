@@ -74,6 +74,8 @@ grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+* something here needs setting to show boot messages at startup. Otherwise you dont see much. I think its the `quite` option
+
 set up CPU microcode updates:
 ```
 pacman -S intel-ucode
